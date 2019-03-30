@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 200px;
+            height:200px;
+            margin:100px;
+            background: pink;
+            position: relative;
+        }
+        button{
+            display: block;
+            margin:0 auto;
+        }
+    </style>
+</head>
+<body>
+<button class="btn1">点击开始移动</button>
+<button class="btn2">点击开始返回</button>
+    <div class="box"></div>
+</body>
+</html>
+
+<script>
+    var btn1 = document.querySelector('.btn1');
+    var btn2 = document.querySelector('.btn2');
+    var box = document.querySelector('.box');
+
+    var yd = 0;
+    var down = 0;
+    var wd = 200;
+    var ht = 200;
+    var time = null;
+
+    btn1.onclick = function(){
+        clearInterval(time);
+         time = setInterval(run,10);
+        function run (){
+            yd+=5;
+            if(yd>=1000){
+                yd=1000;
+                if(yd>=1000){
+                    down+=5;
+                    if(down>=240){
+                        down=240;
+                        wd+=2;
+                        ht+=2;
+                        if(wd >=450 && ht>=450){
+                            wd=450;
+                            ht=450;
+                        }
+                        box.style.width=wd+"px";
+                        box.style.height=ht+"px";
+                        box.style.background="red";
+                    }
+                    box.style.top=down+"px";
+                }
+            }
+            box.style.left=yd+"px";
+        }
+
+    };
+
+    btn2.onclick = function(){
+        clearInterval(time);
+        time = setInterval(fh,10);
+        function fh( ) {
+            down -=5;
+            if(down<=0){
+                down=0;
+                yd -=5;
+                if(yd<=0){
+                    yd=0;
+                    wd-=2;
+                    ht-=2;
+                    if(wd<=200 && ht<=200){
+                        wd=200;
+                        ht=200;
+                    }
+                    box.style.width=wd+"px";
+                    box.style.height=ht+"px";
+                    box.style.background="pink";
+                }
+                box.style.left=yd+"px";
+            }
+            box.style.top=down+"px";
+        }
+    }
+
+
+
+
+
+
+
+</script>
